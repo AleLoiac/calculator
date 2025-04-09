@@ -1,5 +1,8 @@
-let firstOperand;
-let secondOperand;
+const numbersContainer = document.querySelector(".numbers-container");
+const display = document.querySelector(".display");
+
+const firstOperand = [];
+const secondOperand = [];
 let operator;
 
 const add = (a, b) => a + b;
@@ -25,3 +28,14 @@ function operate (a, b, symbol) {
             break;
     }
 }
+
+const updateDisplay = (num) => {
+    display.textContent = num;
+}
+
+numbersContainer.addEventListener("click", (e) => {
+    if (e.target.classList.value === "num") {
+        firstOperand.push(e.target.textContent);
+        updateDisplay(firstOperand.join(""));
+    }
+})
