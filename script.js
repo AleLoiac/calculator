@@ -1,3 +1,7 @@
+let firstOperand;
+let secondOperand;
+let operator;
+
 function add (a, b) {
     return a + b;
 }
@@ -15,4 +19,20 @@ function divide (a, b) {
         return "ERROR";
     }
     return a / b;
+}
+
+function operate (a, b, symbol) {
+    switch (symbol) {
+        case "+":
+            return add(a, b);
+        case "-":
+            return subtract(a, b);
+        case "*":
+            return multiply(a, b);
+        case "/":
+            return divide(a, b);
+        default:
+            console.log("Invalid operation");
+            break;
+    }
 }
