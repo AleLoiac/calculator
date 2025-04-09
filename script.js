@@ -2,24 +2,13 @@ let firstOperand;
 let secondOperand;
 let operator;
 
-function add (a, b) {
-    return a + b;
-}
+const add = (a, b) => a + b;
 
-function subtract (a, b) {
-    return a - b;
-}
+const substract = (a, b) => a - b;
 
-function multiply (a, b) {
-    return a * b;
-}
+const multiply = (a, b) => a * b;
 
-function divide (a, b) {
-    if (b === 0) {
-        return "ERROR";
-    }
-    return a / b;
-}
+const divide = (a, b) => b === 0 ? "ERROR" : a / b;
 
 function operate (a, b, symbol) {
     switch (symbol) {
