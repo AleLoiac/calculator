@@ -1,5 +1,6 @@
 const numbersContainer = document.querySelector(".numbers-container");
 const display = document.querySelector(".display");
+const clearBtn = document.querySelector(".clear");
 
 const firstOperand = [];
 const secondOperand = [];
@@ -33,8 +34,19 @@ const updateDisplay = (num) => {
     display.textContent = num;
 }
 
+const clear = () => {
+    firstOperand.splice(0, firstOperand.length);
+    secondOperand.splice(0, secondOperand.length);
+    operator = "";
+}
+
+clearBtn.addEventListener("click", () => {
+    clear();
+    updateDisplay(0);
+})
+
 numbersContainer.addEventListener("click", (e) => {
-    if (e.target.classList.value === "num") {
+    if (e.target.classList.value === "num" || e.target.classList.value === "num zero") {
         firstOperand.push(e.target.textContent);
         updateDisplay(firstOperand.join(""));
     }
