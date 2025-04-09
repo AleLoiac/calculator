@@ -1,0 +1,70 @@
+*{
+    outline: 1px solid red;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 35px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 700px;
+}
+
+.display {
+    text-align: right;
+    padding: 15px;
+}
+
+.numbers-container {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.equal-clear {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.operators-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.operator {
+    width: 80px;
+    height: 80px;
+}
+
+.equal, .clear {
+    width: 160px;
+    height: 80px;
+}
+
+.num {
+    width: 100px;
+    height: 100px;
+}
+
+.zero {
+    margin: 0 100px;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    border-radius: 5px;
+}
