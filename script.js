@@ -53,17 +53,20 @@ const registerNumbers = (e) => {
 }
 
 const registerOperator = (e) => {
-    if (e.target.classList.contains("operator") && displayTemp && firstOperand) {
+    if (e.target.classList.contains("operator") && displayTemp && !firstOperand) {
+        operator = e.target.textContent;
+        firstOperand = Number(displayTemp.join(""));
+        displayTemp.splice(0, displayTemp.length);
+    } else if (e.target.classList.contains("operator") && displayTemp && firstOperand && secondOperand === "") {
+        operator = e.target.textContent; 
+        secondOperand = Number(displayTemp.join(""));
+    } else if (e.target.classList.contains("operator") && displayTemp && firstOperand) {
         secondOperand = Number(displayTemp.join(""));
         displayTemp.splice(0, displayTemp.length);
         let result = operate(firstOperand, secondOperand, operator);
         updateDisplay(result);
         firstOperand = result;
         operator = e.target.textContent;
-    } else if (e.target.classList.contains("operator") && displayTemp) {
-        operator = e.target.textContent;
-        firstOperand = Number(displayTemp.join(""));
-        displayTemp.splice(0, displayTemp.length);
     }
 }
 
