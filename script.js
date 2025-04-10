@@ -1,7 +1,8 @@
 const numbersContainer = document.querySelector(".numbers-container");
+const operatorsContainer = document.querySelector(".operators-container");
 const display = document.querySelector(".display");
 const clearBtn = document.querySelector(".clear");
-const operatorsContainer = document.querySelector(".operators-container");
+const equalBtn = document.querySelector(".equal");
 
 const displayTemp = [];
 let firstOperand;
@@ -55,7 +56,7 @@ const registerOperator = (e) => {
     if (e.target.classList.contains("operator") && displayTemp && firstOperand) {
         secondOperand = Number(displayTemp.join(""));
         displayTemp.splice(0, displayTemp.length);
-        let result = operate(firstOperand, secondOperand, operator)
+        let result = operate(firstOperand, secondOperand, operator);
         updateDisplay(result);
         firstOperand = result;
         operator = e.target.textContent;
@@ -66,6 +67,18 @@ const registerOperator = (e) => {
     }
 }
 
+const registerEqual = () => {
+    if (firstOperand && operator && displayTemp) {
+        secondOperand = Number(displayTemp.join(""));
+        displayTemp.splice(0, displayTemp.length);
+        let result = operate(firstOperand, secondOperand, operator);
+        updateDisplay(result);
+        firstOperand = result;
+        secondOperand = "";
+    }
+}
+
 numbersContainer.addEventListener("click", registerNumbers);
 operatorsContainer.addEventListener("click", registerOperator);
 clearBtn.addEventListener("click", clear);
+equalBtn.addEventListener("click", registerEqual);
