@@ -54,9 +54,10 @@ const registerNumbers = (e) => {
 
 const registerOperator = (e) => {
     if (e.target.classList.contains("operator")) {
-        if (displayTemp.length !== 0) {
+        if (displayTemp.length !== 0 && operator === "") {
             firstOperand = Number(displayTemp.join(""));
-            console.log(firstOperand);
+            operator = e.target.textContent;
+            displayTemp.splice(0, displayTemp.length);
         }
     }
 }
