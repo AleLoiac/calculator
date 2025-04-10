@@ -39,9 +39,9 @@ const updateDisplay = (num) => {
 
 const clear = () => {
     displayTemp.splice(0, displayTemp.length);
-    firstOperand = "";
-    secondOperand = "";
-    operator = "";
+    firstOperand = null;
+    secondOperand = null;
+    operator = null;
     updateDisplay(0);
 }
 
