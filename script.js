@@ -41,6 +41,7 @@ const clear = () => {
     firstOperand = "";
     secondOperand = "";
     operator = "";
+    updateDisplay(0);
 }
 
 const registerNumbers = (e) => {
@@ -51,7 +52,7 @@ const registerNumbers = (e) => {
 }
 
 const registerOperator = (e) => {
-    if (e.target.classList.contains("operator") && display && firstOperand) {
+    if (e.target.classList.contains("operator") && displayTemp && firstOperand) {
         secondOperand = Number(displayTemp.join(""));
         displayTemp.splice(0, displayTemp.length);
         let result = operate(firstOperand, secondOperand, operator)
@@ -67,8 +68,4 @@ const registerOperator = (e) => {
 
 numbersContainer.addEventListener("click", registerNumbers);
 operatorsContainer.addEventListener("click", registerOperator);
-
-clearBtn.addEventListener("click", () => {
-    clear();
-    updateDisplay(0);
-})
+clearBtn.addEventListener("click", clear);
