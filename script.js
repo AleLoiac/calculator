@@ -46,7 +46,7 @@ clearBtn.addEventListener("click", () => {
 })
 
 numbersContainer.addEventListener("click", (e) => {
-    if (e.target.classList.value === "num" || e.target.classList.value === "num zero") {
+    if (e.target.classList.contains("num")) {
         firstOperand.push(e.target.textContent);
         updateDisplay(firstOperand.join(""));
     }
