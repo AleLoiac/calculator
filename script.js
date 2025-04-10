@@ -5,9 +5,9 @@ const clearBtn = document.querySelector(".clear");
 const equalBtn = document.querySelector(".equal");
 
 const displayTemp = [];
-let firstOperand;
-let secondOperand;
-let operator;
+let firstOperand = "";
+let secondOperand = "";
+let operator = "";
 
 const add = (a, b) => a + b;
 
@@ -39,9 +39,9 @@ const updateDisplay = (num) => {
 
 const clear = () => {
     displayTemp.splice(0, displayTemp.length);
-    firstOperand = null;
-    secondOperand = null;
-    operator = null;
+    firstOperand = "";
+    secondOperand = "";
+    operator = "";
     updateDisplay(0);
 }
 
@@ -53,32 +53,12 @@ const registerNumbers = (e) => {
 }
 
 const registerOperator = (e) => {
-    if (e.target.classList.contains("operator") && displayTemp && !firstOperand) {
-        operator = e.target.textContent;
-        firstOperand = Number(displayTemp.join(""));
-        displayTemp.splice(0, displayTemp.length);
-    } else if (e.target.classList.contains("operator") && displayTemp && firstOperand && secondOperand === "") {
-        operator = e.target.textContent; 
-        secondOperand = Number(displayTemp.join(""));
-    } else if (e.target.classList.contains("operator") && displayTemp && firstOperand) {
-        secondOperand = Number(displayTemp.join(""));
-        displayTemp.splice(0, displayTemp.length);
-        let result = operate(firstOperand, secondOperand, operator);
-        updateDisplay(result);
-        firstOperand = result;
-        operator = e.target.textContent;
+    if (e.target.classList.contains("operator")) {
     }
 }
 
 const registerEqual = () => {
-    if (firstOperand && operator && displayTemp) {
-        secondOperand = Number(displayTemp.join(""));
-        displayTemp.splice(0, displayTemp.length);
-        let result = operate(firstOperand, secondOperand, operator);
-        updateDisplay(result);
-        firstOperand = result;
-        secondOperand = "";
-    }
+    
 }
 
 numbersContainer.addEventListener("click", registerNumbers);
