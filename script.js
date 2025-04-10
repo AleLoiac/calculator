@@ -1,15 +1,16 @@
 const numbersContainer = document.querySelector(".numbers-container");
 const display = document.querySelector(".display");
 const clearBtn = document.querySelector(".clear");
+const operatorsContainer = document.querySelector(".operators-container");
 
 const displayTemp = [];
-const firstOperand = [];
-const secondOperand = [];
+let firstOperand;
+let secondOperand;
 let operator;
 
 const add = (a, b) => a + b;
 
-const substract = (a, b) => a - b;
+const subtract = (a, b) => a - b;
 
 const multiply = (a, b) => a * b;
 
@@ -36,8 +37,9 @@ const updateDisplay = (num) => {
 }
 
 const clear = () => {
-    firstOperand.splice(0, firstOperand.length);
-    secondOperand.splice(0, secondOperand.length);
+    displayTemp.splice(0, displayTemp.length);
+    firstOperand = "";
+    secondOperand = "";
     operator = "";
 }
 
@@ -48,9 +50,25 @@ const registerNumbers = (e) => {
     }
 }
 
+const registerOperator = (e) => {
+    if (e.target.classList.contains("operator") && display && firstOperand) {
+        secondOperand = Number(displayTemp.join(""));
+        displayTemp.splice(0, displayTemp.length);
+        let result = operate(firstOperand, secondOperand, operator)
+        updateDisplay(result);
+        firstOperand = result;
+        operator = e.target.textContent;
+    } else if (e.target.classList.contains("operator") && displayTemp) {
+        operator = e.target.textContent;
+        firstOperand = Number(displayTemp.join(""));
+        displayTemp.splice(0, displayTemp.length);
+    }
+}
+
+numbersContainer.addEventListener("click", registerNumbers);
+operatorsContainer.addEventListener("click", registerOperator);
+
 clearBtn.addEventListener("click", () => {
     clear();
     updateDisplay(0);
 })
-
-numbersContainer.addEventListener("click", registerNumbers);
