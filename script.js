@@ -2,6 +2,7 @@ const numbersContainer = document.querySelector(".numbers-container");
 const display = document.querySelector(".display");
 const clearBtn = document.querySelector(".clear");
 
+const displayTemp = [];
 const firstOperand = [];
 const secondOperand = [];
 let operator;
@@ -40,14 +41,16 @@ const clear = () => {
     operator = "";
 }
 
+const registerNumbers = (e) => {
+    if (e.target.classList.contains("num")) {
+        displayTemp.push(e.target.textContent);
+        updateDisplay(displayTemp.join(""));
+    }
+}
+
 clearBtn.addEventListener("click", () => {
     clear();
     updateDisplay(0);
 })
 
-numbersContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("num")) {
-        firstOperand.push(e.target.textContent);
-        updateDisplay(firstOperand.join(""));
-    }
-})
+numbersContainer.addEventListener("click", registerNumbers);
