@@ -54,13 +54,13 @@ body {
     height: 80px;
 }
 
-.num {
+.num, .floating-point {
     width: 100px;
     height: 100px;
 }
 
 .zero {
-    margin: 0 100px;
+    flex: 1;
 }
 
 button {
