@@ -4,6 +4,7 @@ const display = document.querySelector(".display");
 const clearBtn = document.querySelector(".clear");
 const equalBtn = document.querySelector(".equal");
 const floatinfPoint = document.querySelector(".floating-point");
+const del = document.querySelector(".del");
 
 const displayTemp = [];
 let firstOperand = "";
@@ -97,8 +98,16 @@ const registerFloatingPoint = (e) => {
     }
 }
 
+const registerDel = () => {
+    if (displayTemp.length !== 0) {
+        displayTemp.pop();
+        displayTemp.length === 0 ? updateDisplay(0) : updateDisplay(displayTemp.join(""))
+    }
+}
+
 numbersContainer.addEventListener("click", registerNumbers);
 operatorsContainer.addEventListener("click", registerOperator);
 clearBtn.addEventListener("click", clear);
 equalBtn.addEventListener("click", registerEqual);
 floatinfPoint.addEventListener("click", registerFloatingPoint);
+del.addEventListener("click", registerDel);
