@@ -8,6 +8,7 @@ const displayTemp = [];
 let firstOperand = "";
 let secondOperand = "";
 let operator = "";
+let resultDisplayed = false;
 
 const add = (a, b) => a + b;
 
@@ -46,6 +47,10 @@ const clear = () => {
 }
 
 const registerNumbers = (e) => {
+    if (resultDisplayed) {
+        clear();
+        resultDisplayed = false;
+    }
     if (e.target.classList.contains("num")) {
         displayTemp.push(e.target.textContent);
         updateDisplay(displayTemp.join(""));
@@ -63,13 +68,14 @@ const compute = () => {
 
 const registerOperator = (e) => {
     if (e.target.classList.contains("operator")) {
-        if (displayTemp.length !== 0 && operator === "" && firstOperand === "") { // first time operator click, or after clear()
+        resultDisplayed = false;
+        if (displayTemp.length !== 0 && operator === "" && firstOperand === "") { // clicked an operator for the first time, or after clear()
             firstOperand = Number(displayTemp.join(""));
             operator = e.target.textContent;
             displayTemp.splice(0, displayTemp.length);
-        } else if (displayTemp.length === 0 && operator !== "" && firstOperand !== "") { // operator used after equal used
+        } else if (displayTemp.length === 0 && operator !== "" && firstOperand !== "") { // operator clicked after equal sign
             operator = e.target.textContent;
-        } else if (displayTemp.length !== 0 && operator !== "" && firstOperand !== "") { // operator gets clicked instead of equal sign 
+        } else if (displayTemp.length !== 0 && operator !== "" && firstOperand !== "") { // operator clicked instead of equal sign to make consecutive operations
             compute();
             operator = e.target.textContent;
         }
@@ -79,6 +85,7 @@ const registerOperator = (e) => {
 const registerEqual = () => {
     if (firstOperand !== "" && operator !== "" && displayTemp.length !== 0) {
         compute();
+        resultDisplayed = true;
     }
 }
 
