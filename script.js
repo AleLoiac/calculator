@@ -54,7 +54,7 @@ const registerNumbers = (e) => {
 
 const registerOperator = (e) => {
     if (e.target.classList.contains("operator")) {
-        if (displayTemp.length !== 0 && operator === "") {
+        if (displayTemp.length !== 0 && operator === "") { // first time operator click, or after clear()
             firstOperand = Number(displayTemp.join(""));
             operator = e.target.textContent;
             displayTemp.splice(0, displayTemp.length);
@@ -63,7 +63,14 @@ const registerOperator = (e) => {
 }
 
 const registerEqual = () => {
-    
+    if (firstOperand !== "" && operator !== "" && displayTemp.length !== 0) {
+        secondOperand = Number(displayTemp.join(""));
+        displayTemp.splice(0, displayTemp.length);
+        let result = operate (firstOperand, secondOperand, operator);
+        updateDisplay(result);
+        firstOperand = result;
+        secondOperand = "";
+    }
 }
 
 numbersContainer.addEventListener("click", registerNumbers);
