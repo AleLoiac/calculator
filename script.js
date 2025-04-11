@@ -52,24 +52,33 @@ const registerNumbers = (e) => {
     }
 }
 
+const compute = () => {
+    secondOperand = Number(displayTemp.join(""));
+    displayTemp.splice(0, displayTemp.length);
+    let result = operate (firstOperand, secondOperand, operator);
+    updateDisplay(result);
+    firstOperand = result;
+    secondOperand = "";
+}
+
 const registerOperator = (e) => {
     if (e.target.classList.contains("operator")) {
-        if (displayTemp.length !== 0 && operator === "") { // first time operator click, or after clear()
+        if (displayTemp.length !== 0 && operator === "" && firstOperand === "") { // first time operator click, or after clear()
             firstOperand = Number(displayTemp.join(""));
             operator = e.target.textContent;
             displayTemp.splice(0, displayTemp.length);
+        } else if (displayTemp.length === 0 && operator !== "" && firstOperand !== "") { // operator used after equal used
+            operator = e.target.textContent;
+        } else if (displayTemp.length !== 0 && operator !== "" && firstOperand !== "") { // operator gets clicked instead of equal sign 
+            compute();
+            operator = e.target.textContent;
         }
     }
 }
 
 const registerEqual = () => {
     if (firstOperand !== "" && operator !== "" && displayTemp.length !== 0) {
-        secondOperand = Number(displayTemp.join(""));
-        displayTemp.splice(0, displayTemp.length);
-        let result = operate (firstOperand, secondOperand, operator);
-        updateDisplay(result);
-        firstOperand = result;
-        secondOperand = "";
+        compute();
     }
 }
 
