@@ -59,6 +59,17 @@ const registerNumbers = (e) => {
     }
 }
 
+const registerNumbersKeyboard = (e) => {
+    if (resultDisplayed && !isNaN(e.key)) {
+        clear();
+        resultDisplayed = false;
+    }
+    if (!isNaN(e.key)) {
+        displayTemp.push(e.key);
+        updateDisplay(displayTemp.join(""));
+    }
+}
+
 const compute = () => {
     secondOperand = Number(displayTemp.join(""));
     displayTemp.splice(0, displayTemp.length);
@@ -111,3 +122,12 @@ clearBtn.addEventListener("click", clear);
 equalBtn.addEventListener("click", registerEqual);
 floatinfPoint.addEventListener("click", registerFloatingPoint);
 del.addEventListener("click", registerDel);
+
+document.addEventListener("keydown", (e) => {
+    if (e.key ==="Enter") {
+        e.preventDefault();
+        registerEqual();
+    }
+})
+
+document.addEventListener("keydown", registerNumbersKeyboard);
